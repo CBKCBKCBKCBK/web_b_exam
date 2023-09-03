@@ -1,0 +1,29 @@
+<h2 class="ct">管理者登入</h2>
+<table class="all">
+    <tr>
+        <td class="tt ct"></td>
+        <td class="pp">
+            <input type="text" name="acc" id="acc">
+        </td>
+    </tr>
+    <tr>
+        <td class="tt ct"></td>
+        <td class="pp">
+            <input type="password" name="pw" id="pw">
+        </td>
+    </tr>
+    <tr>
+        <td class="tt ct"></td>
+        <td class="pp">
+            <?php $a=rand(10,99);
+            $b=rand(10,99);
+            $_SESSION['ans']=$a+$b;
+            echo "{$a} + {$b} = ";
+            ?>
+            <input type="text" name="ans" id="ans">
+        </td>
+    </tr>
+</table>
+<div class="ct">
+    <butoon type="button">確認</butoon>
+</div>
