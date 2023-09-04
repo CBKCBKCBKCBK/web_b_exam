@@ -8,6 +8,11 @@ class DB
         $this->table = $table;
         $this->pdo = new PDO($this->dsn, "root", "");
     }
+    function all(...$arg){
+        $sql="select * from $this->table ";
+        $sql=$this->sql_all($sql,...$arg);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
     function count(...$arg)
     {
         $sql = "select count(*) from $this->table ";
@@ -33,6 +38,10 @@ class DB
             $sql="insert into $this->table (`$keys`) values ('$vals')";
         }
         return $this->pdo->exec($sql);
+    }
+    function view($url,$arg=[]){
+        extract($arg);
+        include $url;
     }
     protected function sql_all($sql, ...$arg)
     {

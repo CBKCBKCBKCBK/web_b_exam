@@ -4,4 +4,12 @@ class User extends DB{
     {
         parent::__construct("users");
     }
+    function login($user){
+        if($this->count($user)){
+            $_SESSION['user']=$user['acc'];
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }
