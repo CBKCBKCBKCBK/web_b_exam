@@ -1,3 +1,4 @@
+<?=serialize([1,2,3,4,5])?>
 <h2>第一次購物</h2>
 <a href="javascript:location.href='?do=reg'">
     <img src="./icon/0413.jpg" alt="">
@@ -29,5 +30,5 @@
     </tr>
 </table>
 <div class="ct">
-    <butoon type="button">確認</butoon>
+    <butoon type="button" onclick="login('User')">確認</butoon>
 </div>
