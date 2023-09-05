@@ -12,4 +12,8 @@ class User extends DB{
             return 0;
         }
     }
+    function backend(){
+        $view["rows"]=$this->all();
+        return $this->view("./views/backend/user.php",$view);
+    }
 }

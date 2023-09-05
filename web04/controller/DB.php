@@ -37,6 +37,7 @@ class DB
             $vals=join("','",$arg);
             $sql="insert into $this->table (`$keys`) values ('$vals')";
         }
+        echo $sql;
         return $this->pdo->exec($sql);
     }
     function view($url,$arg=[]){
@@ -60,7 +61,7 @@ class DB
     }
     protected function a2s($arg){
         foreach($arg as $k=>$v){
-            if(!isset($arg['id'])){
+            if($k!='id'){
                 $tmp[]="`$k`='$v'";
             }
         }
