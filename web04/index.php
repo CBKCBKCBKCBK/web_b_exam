@@ -40,43 +40,45 @@
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
-            <a>全部商品</a>
-            <?php $bigs=$Type->all(['big'=>0]);
-            foreach($bigs as $big){
-                echo "<div class='ww'>";
-                echo "<a href='?type={$big['id']}'>{$big['name']}</a>";
-                if($Type->hasMid($big['id'])>0){
-                    echo "<div class='s'>";
-                    $mids=$Type->getMids($big['id']);
-                    foreach($mids as $mid){    
-                        echo "<a href='{$mid['id']}'>{$mid['name']}</a>";
-                    }
-                    echo "</div>";
-                }
-                echo "</div>";
-            } ?>
+                <a href="?Type=0">全部商品(<?= $Goods->count(['sh' => 1]) ?>)</a>
+                <?php $bigs = $Type->all(['big' => 0]);
+                foreach ($bigs as $big) { ?>
+                    <div class='ww'>
+                        <a href='?type=<?= $big['id'] ?>'><?= $big['name']
+?>(<?= $Goods->count(['big' => $big['id'], 'sh' => 1]) ?>)</a>
+                        <?php if ($Type->hasMid($big['id']) > 0) {
+                            echo "<div class='s'>";
+                            $mids = $Type->getMids($big['id']);
+                            foreach ($mids as $mid) { ?>
+                                <a href='?type=<?= $mid['id'] ?>'><?= $mid['name']
+?>(<?= $Goods->count(['mid' => $mid['id'], 'sh' => 1]) ?>)</a>
+                    <?php }
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                    } ?>
+                    </div>
+                    <span>
+                        <div>進站總人數</div>
+                        <div style="color:#f00; font-size:28px;">
+                            00005 </div>
+                    </span>
             </div>
-            <span>
-                <div>進站總人數</div>
-                <div style="color:#f00; font-size:28px;">
-                    00005 </div>
-            </span>
+            <div id="right">
+                <?php $do = $_GET['do'] ?? "main";
+                $table = ucfirst($do);
+                $file = "./views/front/{$do}.php";
+                if (isset($$table)) {
+                    $$table->front();
+                } else if (file_exists($file)) {
+                    include $file;
+                } else {
+                    include "./views/front/main.php";
+                } ?>
+            </div>
+            <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
+                <?= $Bottom->bot() ?></div>
         </div>
-        <div id="right">
-            <?php $do = $_GET['do'] ?? "main";
-            $table = ucfirst($do);
-            $file = "./views/front/{$do}.php";
-            if (isset($$table)) {
-                $$table->front();
-            } else if (file_exists($file)) {
-                include $file;
-            } else {
-                include "./views/front/main.php";
-            } ?>
-        </div>
-        <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-            <?= $Bottom->bot() ?></div>
-    </div>
 
 </body>
 
