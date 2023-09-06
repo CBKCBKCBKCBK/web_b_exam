@@ -60,7 +60,7 @@
         user.name=$("#name").val();
         user.acc=$("#acc").val();
         user.pw=$("#pw").val();
-        user.tew=$("#tew").val();
+        user.tel=$("#tel").val();
         user.addr=$("#addr").val();
         user.email=$("#email").val();
         user.regdate=$("#regdate").val();

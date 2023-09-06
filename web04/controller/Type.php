@@ -1,4 +1,5 @@
 <?php include_once "DB.php";
+include_once "Goods.php";
 class Type extends DB
 {
     function __construct()
@@ -31,21 +32,37 @@ class Type extends DB
     function nav($id)
     {
         $type = $this->type($id);
-        $nav='';
+        $nav = '';
         switch ($type) {
             case "all":
-                $nav="全部商品";
+                $nav = "全部商品";
                 break;
             case "big":
-                $row=$this->find($id);
-                $nav=$row['name'];
+                $row = $this->find($id);
+                $nav = $row['name'];
                 break;
             case "mid":
-                $row=$this->find($id);
-                $big=$this->find($row['big']);
-                $nav=$big['name'].">".$row['name'];
+                $row = $this->find($id);
+                $big = $this->find($row['big']);
+                $nav = $big['name'] . ">" . $row['name'];
                 break;
         }
         return $nav;
+    }
+    function items($id)
+    {
+        $type = $this->type($id);
+        switch ($type) {
+            case "all":
+                $rows = (new Goods)->all(["sh"=>1]);
+                break;
+            case "big":
+                $rows = (new Goods)->all(['big'=>$id,'sh'=>1]);
+                break;
+            case "mid":
+                $rows = (new Goods)->all(['mid'=>$id,'sh'=>1]); 
+                break;
+        }
+        return $rows;
     }
 }

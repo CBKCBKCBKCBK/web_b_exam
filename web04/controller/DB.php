@@ -11,7 +11,7 @@ class DB
     function all(...$arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_all($sql,...$arg);
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return  $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function count(...$arg)
     {
@@ -21,9 +21,12 @@ class DB
     }
     function find($arg)
     {
+        $sql="select * from $this->table ";
         if (is_array($arg)) {
+            $tmp=$this->a2s($arg);
+            $sql.=" where ".join(" && ",$tmp);
         } else {
-            $sql = "select * from $this->table where `id`='$arg'";
+            $sql.= " where `id`='$arg'";
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
