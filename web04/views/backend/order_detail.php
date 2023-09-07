@@ -43,20 +43,21 @@
         <td>單價</td>
         <td>小計</td>
     </tr>
-    <?php $sum = 0;
-    foreach ($_SESSION['cart'] as $id => $qt) {
-        $row = $Goods->find($id); ?>
+    <?php //$sum = 0;
+    $cart = unserialize($row['cart']);
+    foreach ($cart as $id => $qt) {
+        $item  = $Goods->find($id); ?>
         <tr class="pp ct">
-            <td><?= $row['name'] ?></td>
-            <td><?= $row['id'] ?></td>
+            <td><?= $item['name'] ?></td>
+            <td><?= $item['id'] ?></td>
             <td><?= $qt ?></td>
-            <td><?= $row['price'] ?></td>
-            <td><?= $row['price'] * $qt ?></td>
+            <td><?= $item['price'] ?></td>
+            <td><?= $item['price'] * $qt ?></td>
         </tr>
-    <?php $sum += $row['price'] * $qt;
+    <?php //$sum += $item ['price'] * $qt;
     } ?>
 </table>
-<div class="all tt ct">總價:<?= $sum ?></div>
+<div class="all tt ct">總價:<?= /*$sum*/ $row['total'] ?></div>
 <div class="ct">
     <button onclick="location.href='?do=order'">返回</button>
 </div>
