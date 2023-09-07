@@ -1,7 +1,7 @@
-<?php $row=$Order->find($_GET['id']);?>
+<?php $row = $Order->find($_GET['id']); ?>
 <h2 class="ct">訂單編號<span style="color: red;">
-<?=$row['no']?>
-</span>的詳細資料</h2>
+        <?= $row['no'] ?>
+    </span>的詳細資料</h2>
 <table class="all">
     <tr>
         <td class="tt ct">帳號</td>
@@ -12,25 +12,25 @@
     <tr>
         <td class="tt ct">姓名</td>
         <td class="pp">
-            <input type="text" name="name" id="name" value="<?= $row['name'] ?>">
+            <?= $row['name'] ?>
         </td>
     </tr>
     <tr>
         <td class="tt ct">電子信箱</td>
         <td class="pp">
-            <input type="email" name="email" id="email" value="<?= $row['email'] ?>">
+            <?= $row['email'] ?>
         </td>
     </tr>
     <tr>
         <td class="tt ct">住址</td>
         <td class="pp">
-            <input type="text" name="addr" id="addr" value="<?= $row['addr'] ?>">
+            <?= $row['addr'] ?>
         </td>
     </tr>
     <tr>
         <td class="tt ct">電話</td>
         <td class="pp">
-            <input type="text" name="tel" id="tel" value="<?= $row['tel'] ?>">
+            <?= $row['tel'] ?>
         </td>
     </tr>
 </table>
