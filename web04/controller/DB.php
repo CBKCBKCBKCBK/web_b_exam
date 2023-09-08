@@ -40,7 +40,6 @@ class DB
             $vals=join("','",$arg);
             $sql="insert into $this->table (`$keys`) values ('$vals')";
         }
-        echo $sql;
         return $this->pdo->exec($sql);
     }
     function view($url,$arg=[]){

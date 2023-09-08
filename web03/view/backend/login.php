@@ -1,6 +1,4 @@
-<div style="color:red">
-<?=$error??""?>
-</div>
+<div style="color:red"><?=$error??""?></div>
 <form action="?" method="post">
     <p>
         帳號: <input type="text" name="acc" id="acc">
