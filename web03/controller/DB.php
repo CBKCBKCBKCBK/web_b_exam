@@ -33,6 +33,11 @@ class DB
         }
         return $this->pdo->exec($sql);
     }
+    function del($arg){
+        $sql="delete from $this->table where ";
+        $sql=$this->sql_one($sql,$arg);
+        return $this->pdo->exec($sql);
+    }
     function view($url, $arg = null)
     {
         extract($arg);
@@ -41,6 +46,9 @@ class DB
     function min($col,...$arg){return $this->math("min",$col,...$arg);}
     function max($col,...$arg){return $this->math("max",$col,...$arg);}
     function sum($col,...$arg){return $this->math("sum",$col,...$arg);}
+    function q($sql){
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
     protected function math($math,$col,...$arg){
         $sql="select $math($col) from $this->table ";
         $sql=$this->sql_all($sql,...$arg);
@@ -68,7 +76,6 @@ class DB
         } else {
             $sql .= " where `id`='$arg'";
         }
-        echo $sql;
         return $sql;
     }
     protected function a2s($arg)
