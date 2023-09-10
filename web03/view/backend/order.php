@@ -13,7 +13,7 @@
 </div>
 <style>
     .header,
-    .order-list{
+    .order{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -26,7 +26,7 @@
     }
     .order div{
         width: calc(100% / 7);
-        text-align: auto;
+        text-align: center;
         margin: 0 1px;
     }
     .order-list{
@@ -56,7 +56,7 @@
             echo (floor($seat/5)+1)."排".(($seat%5)+1)."號<br>";
         }?></div>
         <div>
-            <button class="del" data-id="<?=$row['id ']?>">刪除</button>
+            <button class="del" data-id="<?=$row['id']?>">刪除</button>
         </div>
     </div>
     <hr>
