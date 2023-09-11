@@ -2,7 +2,7 @@
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=wbep3_db03_r1";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=wbep2_db02_r1";
     protected $pdo;
     protected $links;
     function __construct($table)
@@ -56,39 +56,9 @@ class DB
      *  return $rows;
      * }
      */
-    function paginate($num,$arg=null){
-        $total=$this->count($arg);
-        $pages=ceil($total/$num);
-        $now=$_GET['p']??1;
-        $start=($now-1)*$num;
+    
+    function paginate($num,...$arg){
 
-        $rows=$this->all($arg," limit $start,$num");
-
-        $this->links=[
-            'total'=>$total,
-            'pages'=>$pages,
-            'now'=>$now,
-            'start'=>$start,
-            'rows'=>$rows
-        ];
-        return $rows;
-    }
-    function links($do=null){
-        $html="";
-        if(is_null($do))$do=$this->table;
-        if($this->links['now']-1>=1){
-            $prev=$this->links['now']-1;
-            $html.="<a href='?do=$do&p=$prev'> &lt; </a>";
-        }
-        for ($i=1; $i <= $this->links['pages']; $i++) { 
-            $fontsize=( $i==$this->links['now'])?"24px":"16px";
-            $html.="<a href='?do=$do&p= $i'> $i </a>";
-        }
-        if($this->links['now']+1<=$this->links['pages']){
-            $next=$this->links['now']+1;
-            $html.="<a href='?do=$do&p=$next'> &gt; </a>";
-        }
-        return $html;
     }
     protected function math($math,$col,...$arg){
         $sql="select $math($col) from $this->table ";
