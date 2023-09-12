@@ -3,6 +3,10 @@
     <div class="rb tab" style="width:95%;">
         <div id="abgne-block-20111227">
             <ul class="lists">
+                <?php $rows=$Poster->all();?>
+                <li class="list">
+                    <img src="./upload/" alt="">
+                </li>
             </ul>
             <ul class="controls">
             </ul>
