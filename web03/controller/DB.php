@@ -20,7 +20,18 @@ class DB{
     }
     protected function sql_all($sql,...$arg){
         if(isset($arg[0])){
-            
+            if(is_array($arg[0])){
+                $tmp=$this->a2s($arg);
+            }
         }
+        return $sql;
+    }
+    protected function a2s($arr){
+        foreach($arr as $k=>$v){
+            if($k!='id'){
+                $tmp[]="`$k`='$v'";
+            }
+        }
+        return $tmp;
     }
 }
